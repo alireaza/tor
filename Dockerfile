@@ -1,4 +1,4 @@
-FROM alpine:3.13.4
+FROM alpine:3.16.2
 
 RUN apk update \ 
 && apk add --no-cache \
@@ -8,7 +8,6 @@ RUN apk add obfs4proxy --repository=http://dl-cdn.alpinelinux.org/alpine/edge/te
 
 RUN touch /torrc
 RUN echo "SocksPort 0.0.0.0:9050" >> /torrc
-RUN echo "HTTPTunnelPort 0.0.0.0:8118" >> /torrc
 
 ARG UNAME=udocker
 ARG UID=1000
@@ -22,6 +21,6 @@ USER $UNAME
 WORKDIR /home/$UNAME
 
 EXPOSE 9050
-EXPOSE 8118
 
 ENTRYPOINT ["/usr/bin/tor", "-f", "/torrc"]
+
