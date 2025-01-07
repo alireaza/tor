@@ -4,8 +4,6 @@ RUN apk update \
 && apk add --no-cache \
 tor
 
-RUN apk add obfs4proxy --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing
-
 RUN touch /torrc
 RUN echo "SocksPort 0.0.0.0:9050" >> /torrc
 
